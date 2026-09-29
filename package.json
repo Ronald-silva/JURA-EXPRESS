@@ -1,12 +1,13 @@
 {
   "name": "higgsfield-editor",
   "version": "1.0.0",
-  "description": "",
+  "description": "Scripts de geracao de assets (Higgsfield) para a landing page da Jura Express",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run build && cp .env.local dist/.env.local && node dist/index.js",
-    "build": "tsc",
-    "start": "cp .env.local dist/.env.local && node dist/index.js"
+    "gerar": "node --env-file=.env.local --experimental-strip-types scripts/gerar-video.ts",
+    "gerar:seco": "node --experimental-strip-types scripts/gerar-video.ts --seco",
+    "check": "tsc --noEmit",
+    "retomar": "node --env-file=.env.local --experimental-strip-types scripts/gerar-video.ts --retomar"
   },
   "keywords": [],
   "author": "",
