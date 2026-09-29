@@ -67,7 +67,7 @@ export function Contato() {
             href={EMPRESA.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand"
+            className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink-muted transition-colors hover:text-brand sm:mt-6 sm:min-h-0"
           >
             <InstagramIcon className="size-4" />
             {EMPRESA.instagram}

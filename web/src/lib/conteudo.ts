@@ -25,6 +25,12 @@ export const EMPRESA = {
   playStoreUrl: A_CONFIRMAR as string | null,
 };
 
+/** Assinatura técnica de quem desenvolve o site. */
+export const DESENVOLVEDOR = {
+  nome: "RonalDigital Tech",
+  url: "https://www.ronaldigital.tech/",
+};
+
 export const HERO = {
   sobretitulo: "Plataforma de entregas",
   titulo: "Juro que chega rápido.",
