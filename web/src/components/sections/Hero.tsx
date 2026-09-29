@@ -1,4 +1,5 @@
 import { ArrowRight, Calculator, ShieldCheck, Star } from "lucide-react";
+import Image from "next/image";
 import { WhatsappIcon } from "@/components/ui/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { HERO, PROVAS } from "@/lib/conteudo";
@@ -82,17 +83,32 @@ export function Hero() {
         <div className="relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_24px_60px_-28px_rgba(15,23,42,0.35)]">
             {MIDIA.heroVideo ? (
-              <video
-                className="size-full object-cover"
-                src={MIDIA.heroVideo}
-                poster={MIDIA.heroPoster ?? undefined}
-                autoPlay
-                muted
-                loop
-                playsInline
-                // O vídeo é decorativo: a mensagem está toda no texto ao lado.
-                aria-hidden
-              />
+              <>
+                {/* O poster por baixo do vídeo serve dois propósitos: é o que
+                    aparece logo (bom para o LCP), e é o que fica para quem
+                    pediu ao sistema para reduzir animações. */}
+                {MIDIA.heroPoster && (
+                  <Image
+                    src={MIDIA.heroPoster}
+                    alt=""
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 480px, 100vw"
+                    className="object-cover"
+                  />
+                )}
+                <video
+                  className="relative size-full object-cover motion-reduce:hidden"
+                  src={MIDIA.heroVideo}
+                  poster={MIDIA.heroPoster ?? undefined}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  // O vídeo é decorativo: a mensagem está toda no texto ao lado.
+                  aria-hidden
+                />
+              </>
             ) : (
               <PlaceholderVideo />
             )}

@@ -1,12 +1,9 @@
 /**
  * Assets gerados pela Higgsfield e guardados em web/public/media/.
- *
- * Ficam a null enquanto não existirem: os componentes mostram um estado
- * provisório em vez de um vídeo partido. Basta preencher o caminho depois de
- * correr os scripts de geração.
+ * Escrito por scripts/gerar-video.ts — editar à mão é seguro.
  */
 export const MIDIA = {
-  heroVideo: null as string | null,
+  heroVideo: "/media/hero-motoboy.mp4" as string | null,
   /** Primeiro frame do vídeo: aparece enquanto carrega e em ligações lentas. */
-  heroPoster: null as string | null,
+  heroPoster: "/media/hero-motoboy.jpg" as string | null,
 };

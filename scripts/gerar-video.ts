@@ -6,6 +6,7 @@
  *   npm run gerar -- cidade --seco   só mostra o prompt, não gasta nada
  *   npm run retomar                  volta a acompanhar o último pedido
  *   npm run retomar -- <request_id>  acompanha um pedido específico
+ *   npm run importar -- <ficheiro.mp4> usa um MP4 descarregado do painel
  *
  * O pedido é enviado sem polling e o request_id é gravado em disco ANTES de
  * começarmos a esperar. Na primeira versão deste script o polling do SDK
@@ -15,7 +16,7 @@
  */
 import { createHiggsfieldClient } from "@higgsfield/client/v2";
 import { execFile } from "node:child_process";
-import { mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
@@ -26,6 +27,8 @@ const execFileAsync = promisify(execFile);
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DESTINO = path.join(RAIZ, "web", "public", "media");
 const REGISTO = path.join(RAIZ, ".ultimo-pedido.json");
+/** Originais da Higgsfield, fora de public/: pesados demais para servir. */
+const ORIGINAIS = path.join(RAIZ, "media-originais");
 
 const ENDPOINT = "bytedance/seedance-2.5/text-to-video";
 const API = "https://api.higgsfield.ai";
@@ -98,18 +101,57 @@ async function guardar(r: { video?: { url: string }; images?: { url: string }[] 
   if (!url) throw new Error(`Resposta sem URL: ${JSON.stringify(r)}`);
 
   console.log(`🔗 ${url.slice(0, 70)}...`);
-  await mkdir(DESTINO, { recursive: true });
-
-  const mp4 = path.join(DESTINO, `${ficheiro}.mp4`);
-  const jpg = path.join(DESTINO, `${ficheiro}.jpg`);
+  await mkdir(ORIGINAIS, { recursive: true });
+  const original = path.join(ORIGINAIS, `${ficheiro}.mp4`);
 
   console.log("⬇️  A descarregar...");
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Download falhou: HTTP ${res.status}`);
-  await writeFile(mp4, Buffer.from(await res.arrayBuffer()));
+  await writeFile(original, Buffer.from(await res.arrayBuffer()));
 
-  const { size } = await stat(mp4);
-  console.log(`   ${path.relative(RAIZ, mp4)} (${(size / 1048576).toFixed(1)} MB)`);
+  await finalizar(original, ficheiro);
+}
+
+/**
+ * Importa um MP4 descarregado à mão do painel da Higgsfield. Útil quando o
+ * pedido não é recuperável pela API mas o vídeo está visível no console.
+ */
+async function importar(origem: string, ficheiro = "hero-motoboy") {
+  await mkdir(ORIGINAIS, { recursive: true });
+  const original = path.join(ORIGINAIS, `${ficheiro}.mp4`);
+  await copyFile(path.resolve(origem), original);
+  console.log(`📥 Importado de ${origem}`);
+  await finalizar(original, ficheiro);
+}
+
+const mb = async (f: string) => ((await stat(f)).size / 1048576).toFixed(1);
+
+/**
+ * Converte o original para uma versão servível na web e extrai o poster.
+ *
+ * A Seedance devolve HEVC (H.265) a 1080x1920, ~13 MB por 5 s. O Firefox não
+ * reproduz HEVC e o Chrome só com suporte de hardware — o Hero ficaria em
+ * branco para muita gente. H.264 toca em todo o lado; 720 px de largura sobram
+ * para um painel que aparece com ~480 px; o áudio sai porque o vídeo toca mudo.
+ */
+async function finalizar(original: string, ficheiro: string) {
+  await mkdir(DESTINO, { recursive: true });
+  const mp4 = path.join(DESTINO, `${ficheiro}.mp4`);
+  const jpg = path.join(DESTINO, `${ficheiro}.jpg`);
+
+  console.log("🎞️  A converter para a web (H.264, 720p, sem áudio)...");
+  await execFileAsync("ffmpeg", [
+    "-y", "-loglevel", "error",
+    "-i", original,
+    "-an",
+    "-vf", "scale=720:-2",
+    "-c:v", "libx264", "-preset", "slow", "-crf", "26",
+    "-profile:v", "high", "-pix_fmt", "yuv420p",
+    // moov no início: o browser começa a tocar antes do download acabar.
+    "-movflags", "+faststart",
+    mp4,
+  ]);
+  console.log(`   original ${await mb(original)} MB → ${path.relative(RAIZ, mp4)} ${await mb(mp4)} MB`);
 
   // Um segundo dentro do vídeo: o primeiro frame costuma ser escuro.
   await execFileAsync("ffmpeg", [
@@ -205,6 +247,10 @@ async function main() {
   const livre = args.filter((a) => !a.startsWith("--"));
 
   if (modo) return retomar(livre[0]);
+  if (args.includes("--importar")) {
+    if (!livre[0]) throw new Error("Indique o caminho do MP4: npm run importar -- ~/Downloads/video.mp4");
+    return importar(livre[0]);
+  }
 
   const chave = livre[0];
   if (!chave || !CONCEITOS[chave]) {
