@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { WhatsappIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { EMPRESA } from "@/lib/conteudo";
@@ -67,7 +68,7 @@ export function Header() {
             Sou entregador
           </a>
           <ButtonLink href="#contato">
-            <MessageCircle className="size-4" aria-hidden />
+            <WhatsappIcon className="size-4" />
             Falar com a equipe
           </ButtonLink>
         </div>
@@ -110,7 +111,7 @@ export function Header() {
             className="mt-4 w-full"
             onClick={() => setAberto(false)}
           >
-            <MessageCircle className="size-4" aria-hidden />
+            <WhatsappIcon className="size-4" />
             Falar com a equipe
           </ButtonLink>
           <p className="mt-4 text-center text-sm text-ink-subtle">

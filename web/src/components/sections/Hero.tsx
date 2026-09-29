@@ -1,4 +1,5 @@
 import { ArrowRight, Calculator, ShieldCheck, Star } from "lucide-react";
+import { WhatsappIcon } from "@/components/ui/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { HERO, PROVAS } from "@/lib/conteudo";
 import { MIDIA } from "@/lib/midia";
@@ -53,8 +54,8 @@ export function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="#contato" tamanho="lg">
+              <WhatsappIcon className="size-[18px]" />
               {HERO.ctaPrimario}
-              <ArrowRight className="size-4" aria-hidden />
             </ButtonLink>
             <ButtonLink href="#calculadora" variante="secundario" tamanho="lg">
               <Calculator className="size-4" aria-hidden />

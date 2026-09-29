@@ -36,7 +36,9 @@ export const HERO = {
   titulo: "Juro que chega rápido.",
   subtitulo:
     "Motoboys credenciados, rastreamento em tempo real e um painel onde você acompanha cada etapa. Sua operação de entregas funcionando sem você precisar administrar motoboy.",
-  ctaPrimario: "Pedir orçamento no WhatsApp",
+  // Curto de propósito: com "Pedir orçamento no WhatsApp" o botão quebrava em
+  // duas linhas entre 1024 e 1440px. O ícone já diz qual é o canal.
+  ctaPrimario: "Orçamento no WhatsApp",
   ctaSecundario: "Calcular quanto economizo",
 };
 

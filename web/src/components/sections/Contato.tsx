@@ -1,5 +1,5 @@
-import { ArrowRight, Bike, Mail, MessageCircle } from "lucide-react";
-import { InstagramIcon } from "@/components/ui/icons";
+import { ArrowRight, Bike, Mail } from "lucide-react";
+import { InstagramIcon, WhatsappIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { ButtonLink } from "@/components/ui/Button";
 import { EMPRESA } from "@/lib/conteudo";
@@ -42,14 +42,14 @@ export function Contato() {
                 rel="noopener noreferrer"
                 tamanho="lg"
               >
-                <MessageCircle className="size-4" aria-hidden />
+                <WhatsappIcon className="size-4" />
                 Chamar no WhatsApp
               </ButtonLink>
             ) : (
               /* O site atual não tem WhatsApp em lado nenhum — é o maior
                  vazamento de leads. O botão fica pronto; falta só o número. */
               <ButtonLink href={`mailto:${EMPRESA.email}`} tamanho="lg">
-                <MessageCircle className="size-4" aria-hidden />
+                <WhatsappIcon className="size-4" />
                 Chamar no WhatsApp
               </ButtonLink>
             )}

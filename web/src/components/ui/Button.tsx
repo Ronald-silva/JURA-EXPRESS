@@ -4,7 +4,7 @@ type Variante = "primario" | "secundario" | "fantasma";
 type Tamanho = "md" | "lg";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold " +
+  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap " +
   "transition-all duration-200 disabled:pointer-events-none disabled:opacity-50";
 
 const VARIANTES: Record<Variante, string> = {
