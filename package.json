@@ -1,0 +1,24 @@
+{
+  "name": "higgsfield-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run build && cp .env.local dist/.env.local && node dist/index.js",
+    "build": "tsc",
+    "start": "cp .env.local dist/.env.local && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@higgsfield/client": "^0.2.6",
+    "dotenv": "^18.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
