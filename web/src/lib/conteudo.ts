@@ -122,6 +122,54 @@ export const FERRAMENTAS = [
   },
 ];
 
+/**
+ * Modo de demonstração.
+ *
+ * Com `true`, a seção de depoimentos mostra os exemplos abaixo e assume-os
+ * como ilustrativos. Basta pôr `false` — ou preencher DEPOIMENTOS_REAIS — para
+ * a página passar a exibir só depoimentos verdadeiros.
+ *
+ * ⚠️ Antes de publicar o site para o público, isto tem de ir a `false`.
+ * Depoimento inventado num site no ar é propaganda enganosa; aqui serve só
+ * para o dono da Jura Express ver como a seção fica preenchida.
+ */
+export const MODO_DEMONSTRACAO = true;
+
+export interface Depoimento {
+  texto: string;
+  nome: string;
+  cargo: string;
+  empresa: string;
+}
+
+/** Depoimentos reais. Ao preencher isto, os exemplos deixam de aparecer. */
+export const DEPOIMENTOS_REAIS: Depoimento[] = [];
+
+/** Exemplos ilustrativos, usados apenas na apresentação. Empresas fictícias. */
+export const DEPOIMENTOS_EXEMPLO: Depoimento[] = [
+  {
+    texto:
+      "Na hora do almoço eu tinha dois motoboys e nunca dava conta. Hoje passo o pedido pelo painel e não preciso mais ficar ligando para saber onde está a entrega. O cliente recebe quente, que é o que importa.",
+    nome: "Carla Menezes",
+    cargo: "Proprietária",
+    empresa: "Cantina da Esquina",
+  },
+  {
+    texto:
+      "Entrega de medicamento não pode atrasar e não pode sumir. O rastreamento em tempo real resolveu isso para a gente — sei exatamente onde está cada pedido e o cliente também.",
+    nome: "Eduardo Prado",
+    cargo: "Gerente",
+    empresa: "Drogaria São Bento",
+  },
+  {
+    texto:
+      "Eu tinha moto, funcionário registrado, manutenção, tudo. Fiz a conta e terceirizar ficou muito mais barato no meu volume. Faz oito meses que não penso mais em logística.",
+    nome: "Rafael Tomaz",
+    cargo: "Sócio-fundador",
+    empresa: "Ateliê Norte Decor",
+  },
+];
+
 export const FAQ = [
   {
     pergunta: "Como começo a usar a Jura Express?",
