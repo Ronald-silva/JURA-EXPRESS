@@ -15,7 +15,7 @@ export function Diferenciais() {
         texto="Sua equipe volta a cuidar do negócio enquanto a operação de entrega roda com acompanhamento, cobertura e suporte."
       />
 
-      <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {DIFERENCIAIS.map((item, i) => {
           const Icone = ICONES[item.icone as keyof typeof ICONES];
           return (

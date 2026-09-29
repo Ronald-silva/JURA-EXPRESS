@@ -17,7 +17,9 @@ export function Reveal({ indice = 0, className = "", children }: RevealProps) {
     <div
       data-reveal
       style={{ "--i": indice } as CSSProperties}
-      className={className}
+      // min-w-0: como item de grelha, sem isto o cartão recusa encolher abaixo
+      // da largura do texto mais longo que não quebra.
+      className={`min-w-0 ${className}`}
     >
       {children}
     </div>

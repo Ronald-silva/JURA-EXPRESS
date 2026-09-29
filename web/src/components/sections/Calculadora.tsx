@@ -37,9 +37,9 @@ export function Calculadora() {
         texto="Compare o custo real de um motoboy contratado com o de terceirizar as entregas. Todos os valores são editáveis — e o resultado diz a verdade, inclusive quando ter frota própria compensa mais."
       />
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr] lg:items-start">
         {/* Entradas */}
-        <div className="rounded-2xl border border-line bg-surface p-8 shadow-sm">
+        <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8">
           <Slider
             id="entregas"
             rotulo="Entregas por dia"
@@ -66,7 +66,7 @@ export function Calculadora() {
             />
           </div>
 
-          <div className="mt-8 rounded-xl border border-line bg-canvas p-5">
+          <div className="mt-8 rounded-xl border border-line bg-canvas p-4 sm:p-5">
             <div className="flex items-start gap-3">
               <Info className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
               <div>
@@ -88,7 +88,7 @@ export function Calculadora() {
 
         {/* Resultados */}
         <div className="space-y-4">
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <CartaoCusto
               titulo="Motoboy próprio"
               valor={r.custoProprio}
@@ -178,7 +178,7 @@ function Veredicto({
 
   if (r.terceirizarCompensa) {
     return (
-      <div className="rounded-2xl border border-positive/25 bg-positive-tint p-7">
+      <div className="rounded-2xl border border-positive/25 bg-positive-tint p-6 sm:p-7">
         <div className="flex items-start gap-3">
           <TrendingDown className="mt-1 size-5 shrink-0 text-positive" aria-hidden />
           <div className="min-w-0">
@@ -187,7 +187,7 @@ function Veredicto({
             </p>
             <p className="mt-2 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
               {formatarReal(economia)}
-              <span className="ml-1.5 text-base font-medium text-ink-muted">
+              <span className="ml-1.5 text-base font-medium whitespace-nowrap text-ink-muted">
                 por mês
               </span>
             </p>
@@ -208,7 +208,7 @@ function Veredicto({
   // Quando a frota própria ganha, a calculadora diz isso. Fingir o contrário
   // destruiria a credibilidade da ferramenta e da empresa.
   return (
-    <div className="rounded-2xl border border-line bg-surface p-7 shadow-sm">
+    <div className="rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-7">
       <div className="flex items-start gap-3">
         <TrendingUp className="mt-1 size-5 shrink-0 text-ink-muted" aria-hidden />
         <div className="min-w-0">
@@ -324,7 +324,7 @@ function Slider({
         <label htmlFor={id} className="text-sm font-semibold text-ink">
           {rotulo}
         </label>
-        <span className="text-lg font-bold text-brand tabular-nums">
+        <span className="shrink-0 text-lg font-bold whitespace-nowrap text-brand tabular-nums">
           {formatar(valor)}
         </span>
       </div>

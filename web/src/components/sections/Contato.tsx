@@ -9,7 +9,7 @@ export function Contato() {
 
   return (
     <Section id="contato" fundo="canvas">
-      <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-8 py-14 shadow-sm sm:px-14">
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-12 shadow-sm sm:px-14 sm:py-14">
         <div
           aria-hidden
           className="pointer-events-none absolute -top-24 -right-16 size-80 rounded-full bg-brand/8 blur-3xl"
@@ -80,7 +80,7 @@ export function Contato() {
       <div
         id="entregadores"
         style={{ scrollMarginTop: "5rem" }}
-        className="mt-5 flex flex-col items-start justify-between gap-5 rounded-2xl border border-line bg-surface-muted px-8 py-7 sm:flex-row sm:items-center"
+        className="mt-5 flex flex-col items-start justify-between gap-5 rounded-2xl border border-line bg-surface-muted px-6 py-6 sm:flex-row sm:px-8 sm:py-7 sm:items-center"
       >
         <div className="flex items-start gap-4">
           <div className="slant flex size-11 shrink-0 items-center justify-center rounded-xl bg-surface text-brand shadow-sm">

@@ -15,7 +15,7 @@ export function Servicos() {
         texto="Do pedido avulso à rota dedicada, o formato se ajusta ao que a sua operação precisa."
       />
 
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
         {SERVICOS.map((servico, i) => {
           const Icone = ICONES[servico.icone as keyof typeof ICONES];
           return (

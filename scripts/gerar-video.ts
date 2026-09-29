@@ -139,12 +139,27 @@ async function finalizar(original: string, ficheiro: string) {
   const mp4 = path.join(DESTINO, `${ficheiro}.mp4`);
   const jpg = path.join(DESTINO, `${ficheiro}.jpg`);
 
-  console.log("🎞️  A converter para a web (H.264, 720p, sem áudio)...");
+  // Loop sem corte: o fim funde-se com o início. O vídeo passa a começar em
+  // FUSAO segundos e a terminar exatamente nesse frame, por isso quando o
+  // <video loop> recomeça não há salto. Custa FUSAO segundos de duração.
+  const FUSAO = 0.8;
+  const { stdout } = await execFileAsync("ffprobe", [
+    "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", original,
+  ]);
+  const duracao = Number.parseFloat(stdout);
+  const offset = (duracao - 2 * FUSAO).toFixed(3);
+
+  console.log("🎞️  A converter para a web (H.264, 720p, sem áudio, loop suave)...");
   await execFileAsync("ffmpeg", [
     "-y", "-loglevel", "error",
     "-i", original,
     "-an",
-    "-vf", "scale=720:-2",
+    "-filter_complex",
+    `[0:v]scale=720:-2,settb=AVTB,fps=24,split[a][b];` +
+      `[a]trim=start=${FUSAO},setpts=PTS-STARTPTS[corpo];` +
+      `[b]trim=end=${FUSAO},setpts=PTS-STARTPTS[inicio];` +
+      `[corpo][inicio]xfade=transition=fade:duration=${FUSAO}:offset=${offset}[v]`,
+    "-map", "[v]",
     "-c:v", "libx264", "-preset", "slow", "-crf", "26",
     "-profile:v", "high", "-pix_fmt", "yuv420p",
     // moov no início: o browser começa a tocar antes do download acabar.

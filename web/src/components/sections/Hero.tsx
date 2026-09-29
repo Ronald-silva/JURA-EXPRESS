@@ -19,7 +19,7 @@ export function Hero() {
         className="speed-lines pointer-events-none absolute inset-x-0 top-0 h-full opacity-40"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-14 px-6 pt-16 pb-20 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16 lg:pt-24 lg:pb-28">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-14 px-6 pt-16 pb-20 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16 lg:pt-24 lg:pb-28">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3.5 py-1.5 text-xs font-semibold tracking-wide text-ink-muted uppercase shadow-sm">
             <span className="size-1.5 rounded-full bg-brand" aria-hidden />
@@ -129,7 +129,7 @@ export function Hero() {
                   <p className="text-sm font-semibold text-ink">
                     Entrega confirmada
                   </p>
-                  <p className="truncate text-xs text-ink-muted">
+                  <p className="text-xs leading-snug text-pretty text-ink-muted">
                     Rastreamento em tempo real, do despacho à assinatura
                   </p>
                 </div>

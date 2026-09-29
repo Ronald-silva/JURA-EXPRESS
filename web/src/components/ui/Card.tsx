@@ -14,7 +14,7 @@ export function Card({ className = "", children }: CardProps) {
   return (
     <div
       className={
-        "rounded-2xl border border-line bg-surface p-8 shadow-sm " +
+        "rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8 " +
         "transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md " +
         className
       }

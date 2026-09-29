@@ -28,6 +28,15 @@
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
+/* Rede de segurança contra scroll horizontal no telemóvel. As grelhas já não
+   transbordam (grid-cols-1 + min-w-0), mas um elemento futuro pode voltar a
+   fazê-lo. `clip` e não `hidden`: hidden cria um contentor de scroll e parte o
+   position: sticky do cabeçalho. */
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   background-color: var(--color-canvas);
   color: var(--color-ink);

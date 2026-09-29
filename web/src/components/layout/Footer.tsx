@@ -17,7 +17,7 @@ export function Footer() {
       {/* Em telemóvel tudo centra; a partir de md volta ao alinhamento à
           esquerda, que é o que funciona numa grelha de quatro colunas. */}
       <div className="mx-auto w-full max-w-6xl text-center md:text-left">
-        <div className="grid gap-12 md:grid-cols-4 md:gap-10">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-10">
           <div className="md:col-span-2">
             <div className="flex justify-center md:justify-start">
               <Logo />

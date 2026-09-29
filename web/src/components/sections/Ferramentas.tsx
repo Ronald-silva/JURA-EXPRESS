@@ -15,7 +15,7 @@ export function Ferramentas() {
         texto="Web Panel no navegador e aplicativo no celular: o mesmo acompanhamento, do despacho à confirmação."
       />
 
-      <div className="mt-12 grid gap-5 md:grid-cols-2">
+      <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
         {FERRAMENTAS.map((ferramenta, i) => {
           const Icone = ICONES[ferramenta.icone as keyof typeof ICONES];
           return (

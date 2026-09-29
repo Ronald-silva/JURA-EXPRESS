@@ -42,7 +42,7 @@ export function Depoimentos() {
         </p>
       )}
 
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
         {lista.length > 0
           ? lista.map((d, i) => (
               <Reveal key={d.nome} indice={i}>
@@ -67,7 +67,7 @@ function Cartao({ depoimento: d }: { depoimento: Depoimento }) {
     .join("");
 
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-8 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md">
+    <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-sm sm:p-8 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-md">
       <Quote className="size-6 shrink-0 text-brand-soft" aria-hidden />
 
       <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-ink-muted">
@@ -83,8 +83,8 @@ function Cartao({ depoimento: d }: { depoimento: Depoimento }) {
           <span className="unslant">{iniciais}</span>
         </div>
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-ink">{d.nome}</p>
-          <p className="truncate text-xs text-ink-subtle">
+          <p className="text-sm font-semibold text-ink">{d.nome}</p>
+          <p className="text-xs leading-snug text-ink-subtle">
             {d.cargo} · {d.empresa}
           </p>
         </div>
@@ -95,7 +95,7 @@ function Cartao({ depoimento: d }: { depoimento: Depoimento }) {
 
 function EspacoReservado() {
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-dashed border-line-strong bg-surface/60 p-8">
+    <figure className="flex h-full flex-col rounded-2xl border border-dashed border-line-strong bg-surface/60 p-6 sm:p-8">
       <Quote className="size-6 text-ink-subtle/50" aria-hidden />
       <div className="mt-5 flex-1 space-y-2.5" aria-hidden>
         <div className="h-2.5 w-full rounded-full bg-surface-muted" />

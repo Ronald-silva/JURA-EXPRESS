@@ -4,7 +4,9 @@ type Variante = "primario" | "secundario" | "fantasma";
 type Tamanho = "md" | "lg";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap " +
+  // Quebra de linha só é bloqueada a partir de sm: abaixo disso, um rótulo
+  // longo que não quebra empurra a página para o lado em ecrãs de 320px.
+  "inline-flex items-center justify-center gap-2 rounded-xl text-center font-semibold sm:whitespace-nowrap " +
   "transition-all duration-200 disabled:pointer-events-none disabled:opacity-50";
 
 const VARIANTES: Record<Variante, string> = {

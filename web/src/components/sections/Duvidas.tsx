@@ -8,7 +8,7 @@ import { FAQ } from "@/lib/conteudo";
 export function Duvidas() {
   return (
     <Section id="duvidas" fundo="surface">
-      <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <SectionHead
           sobretitulo="Dúvidas"
           titulo="Perguntas frequentes"
